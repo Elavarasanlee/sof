@@ -6,7 +6,8 @@
             $empty = 1;
         } else {
             //Proceed with db-insert operation.
-            echo 'Yo submitted following values:<br/>';
+            //To check if already an org. exists with same name, Do: "SELECT * FROM `tabl_name` WHERE `name`=$name;"
+            echo 'You submitted following values:<br/>';
             foreach($_POST as $key=>$val) {
                 echo $key.' = '.$val.'<br/>';
             }
