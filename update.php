@@ -1,6 +1,8 @@
 <?php
     $mysqli = new mysqli('localhost', 'root', '', 'test'); //Mysqli connection.
+    
     if($mysqli->connect_errno) { die('Unable to connect to database. Following error occured: '.  $mysqli->connect_error); }
+    
     //Start - Fetch all organizations from database.
     $query = 'SELECT * FROM `org`';
     $run = $mysqli->query($query);
@@ -11,6 +13,7 @@
         $run->close();
     }
     //End - Fetch all organizations from database.
+    
     //Start - If Organization is selected, process it.
     if(isset($_POST['org_select']) && !empty($_POST['org_select'])) {
         $org_id = $_POST['org_select'];
@@ -25,13 +28,16 @@
         }
     }
     //End - If Organization is selected, process it.
+    
     //Start - If Organization details are updated.
     if(isset($_POST['update'])) {
         //Handle Update queries here, either using input field - name or using hidden field - id.
     }
     //End - If Organization details are updated.
+    
     $mysqli->close(); //Close the Mysqli connection.
 ?>
+
 <html>
     <head>
         <title>Update Details</title>
@@ -41,6 +47,7 @@
     </style>
     <body>
         <!-- Start Select Organization Form -->
+        <?php if(!empty($result)): ?>
         <form id="org_sel_form" name="org_sel_form" method="post" action="">
             <label for="org_select">Select an Organization to Update Details :</label><br/>
             <select id="org_select" name="org_select">
@@ -54,20 +61,26 @@
                 <input type="submit" name="submit" value="Get Details" form="org_sel_form"/>
             </noscript>
         </form>
+        <?php else: ?>
+        No Organization is registered yet. <a href="ins.php">Click Here</a> to register.
+        <?php endif; ?>
         <!-- End Select Organization Form -->
+        
+        <!-- Start Update Organization details Form id Any organization is selected -->
         <?php if(isset($org_details) && !empty($org_details)): ?>
             <form name="update-org-form" id="update-org-form" method="post" action="">
                 <input type="hidden" name="id" value="<?php echo $org_details->id;?>" for="update-org-form" />
                 <pre>
                 <!-- Made Name as readonly input field -->
-                Name      <input type="text" name="name" readonly="" value="<?php echo $org_details->name;?>" for="update-org-form" />
+                Name      <input type="text" name="name" readonly="" value="<?php echo $org_details->name;?>" for="update-org-form" /><br/>
                 Telephone <input type="text" name="telephone" value="<?php echo $org_details->telephone;?>" for="update-org-form" />
-                <!-- So on.. -->
+                <!-- So on... -->
                 Skipped other fields...
                 <input type="submit" name="update" id="update" value="Update" for="update-org-form" />
                 </pre>
             </form>
         <?php endif; ?>
+        <!-- End Update Organization details Form -->
     </body>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">

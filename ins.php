@@ -6,6 +6,10 @@
             $empty = 1;
         } else {
             //Proceed with db-insert operation.
+            echo 'Yo submitted following values:<br/>';
+            foreach($_POST as $key=>$val) {
+                echo $key.' = '.$val.'<br/>';
+            }
         }
     }
 ?>
@@ -24,15 +28,16 @@
         </span>
         <form action="" method="post" name="myForm">
             <pre>
-            Name        <input id="name" type="text" name="name" required="required" />
-            Telephone   <input id="telephone" type="text" name="telephone" />
-            Fax         <input id="fax" type="text" name="fax" />
-            Web address <input id="webaddress" type="text" name="webaddress" />
-            State       <input id="state" type="text" name="state" />
-            Address     <input id="address" type="text" name="address" />
-            <input type="submit" id="submit" name="submit" value="Submit" />
+            Name        <input id="name" type="text" name="name" required="required" /><br/>
+            Telephone   <input id="telephone" type="text" name="telephone" /><br/>
+            Fax         <input id="fax" type="text" name="fax" /><br/>
+            Web address <input id="webaddress" type="text" name="webaddress" /><br/>
+            State       <input id="state" type="text" name="state" /><br/>
+            Address     <input id="address" type="text" name="address" /><br/>
+            <input type="submit" id="submit" name="submit" value="Submit" /><br/>
             </pre>
-        </form>
+        </form><br/>
+        <a href="update.php">Click Here</a> to update existing organization's details.
     </body>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -42,7 +47,7 @@
                 $(".err").text('Name can\'t be left empty.');
                 return false;
             }
-            return false;
+            return true;
         });
     </script>
 </html>
