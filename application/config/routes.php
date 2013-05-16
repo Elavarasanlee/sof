@@ -43,6 +43,8 @@ $route['404_override'] = '';
 $route['paging/(:num)'] = 'paging/index/(:num)';
 $route['(:num)/paging/(:num)'] = 'paging/index/(:num)';
 $route['(:any)/paging'] = 'paging/index/';
+$route['(:any)/paging'] = 'paging/index/';
+$route['timezone/test/(:num)'] = 'timezone/test/?hi=$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

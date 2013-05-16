@@ -19,7 +19,7 @@ class Paging extends CI_Controller {
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
         $data["results"] = $this->page_model->fetch_records($config["per_page"], $page);
-        echo $this->pagination->create_links();
+        $this->load->view('paging',$data);
     }
 
 }

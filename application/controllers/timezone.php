@@ -19,5 +19,10 @@ class Timezone extends CI_Controller{
         $data['datestring'] = "%Y-%m-%d %h:%i:%s %a";
         $this->load->view('tz_view',$data);
     }
+    
+    public function test() {
+        $test = $this->input->get('hi');  echo 'hi '.$test.'<br/>';
+        $this->load->view('test');
+    }
 }
 ?>
