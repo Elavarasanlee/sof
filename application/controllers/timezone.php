@@ -11,8 +11,10 @@ class Timezone extends CI_Controller{
     }
     
     public function index() {
-        $timezone = $this->input->post('timezones') ? $this->input->post('timezones') : 'UTC';
-        $data['isdef-timezone'] = $this->input->post('timezones') ? TRUE : FALSE;
+        $post_tz = $this->input->post('timezones');
+        $timezone = !empty($post_tz) ? $post_tz : 'UTC';
+        $data['isdef_timezone'] = !empty($post_tz) ? timezones($post_tz) : FALSE;
+        $data['tz_select_options'] = array('name'=>'tz-dst','id'=>'tz-dst','value'=>'TRUE','checked'=>FALSE);
         $time = now();
         $daylight_saving = !empty($_POST['tz-dst']) ? TRUE : FALSE;
         $data['gmt_to_local'] = gmt_to_local($time,$timezone,$daylight_saving);
