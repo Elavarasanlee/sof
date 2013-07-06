@@ -1,4 +1,4 @@
-lee
+Sof
 ===
 
-Just for testing.
+For practicing CI special functions and for creating a library for detecting user's current timezone.
